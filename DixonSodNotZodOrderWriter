@@ -1,0 +1,48 @@
+//AUTHOR: Kayla Dixon
+//COURSE: CPT 187
+//PURPOSE: To learn how to sort and search arrays and write files.
+//STARTDATE: 12/4/19
+
+package edu.cpt187.dixon.participation;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+public class OrderWriter 
+{
+	private String masterFileName = "";
+	private int recordCount = 0;
+	
+	public OrderWriter(String borrowedFileName)
+	{
+		masterFileName = borrowedFileName;
+	}//END OF ORDER WRITER CONSTRUCTOR
+	
+	public void setWriteOrder(int[] borrowedItemID, String[] borrowedItemName, double[] borrowedItemPrice, int[] borrowedQuantity, double[] borrowedOrderCost)
+	{
+		try
+		{
+			PrintWriter filePW = new PrintWriter(new FileWriter(masterFileName,true));
+			
+			filePW.printf("%d\t%s\t%f\t%d\t%f\r", borrowedItemID, borrowedItemName, borrowedItemPrice, borrowedQuantity, borrowedOrderCost);
+			
+			filePW.close();
+		}//END OF TRY
+		catch (IOException ex)
+		{
+			System.out.println("There was a problem with the data collected:" + ex);
+		}//END OF CATCH
+	}//END OF SET WRITE ORDER
+	
+	public String getFileName()
+	{
+		return masterFileName;
+	}//END OF GET FILE NAME
+	
+	public int getRecordCount()
+	{
+		return recordCount;
+	}//END OF GET RECORD COUNT
+
+}//END OF CLASS
